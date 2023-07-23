@@ -1,6 +1,10 @@
+import { Inter } from "next/font/google";
+import styles from "./page.module.css";
+import "./global.css";
+
 export const metadata = {
   metadataBase: new URL("https://eyep.me"),
-  title: "IP Me",
+  title: "IP Me | IP, Location, and User Agent Lookup",
   description: "Fast & secure IP, location, and user-agent lookup",
   author: "@PTRFRLL",
   viewport: {
@@ -31,10 +35,25 @@ export const metadata = {
   },
 };
 
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+});
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={inter.className}>
+        <div className={styles.contain}>
+          <div className={styles.center}>{children}</div>
+        </div>
+        <footer className={styles.footer}>
+          Open source on{" "}
+          <a rel="noreferrer" href="https://github.com/PTRFRLL/eyep.me">
+            Github
+          </a>
+        </footer>
+      </body>
     </html>
   );
 }

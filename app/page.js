@@ -1,4 +1,3 @@
-import styles from "./page.module.css";
 import { headers } from "next/headers";
 import { UAParser } from "ua-parser-js";
 
@@ -10,6 +9,10 @@ async function getData() {
 
   let parser = new UAParser(userAgent);
   let parserResults = parser.getResult();
+
+  if (!res.ok) {
+    throw new Error("Error in fetch");
+  }
 
   const { city, regionName, country, isp, query, mobile } = await res.json();
 
@@ -30,23 +33,21 @@ async function getData() {
 export default async function Home() {
   const { city, regionName, country, isp, query, mobile, browser, os } = await getData();
   return (
-    <div className={styles.contain}>
-      <div className={styles.center}>
-        <h1>{query}</h1>
+    <>
+      <h1>{query}</h1>
+      <p>
+        {city}, {regionName}, {country}
+        <br />
+        ISP: {isp}
+      </p>
+      <p>
+        Running <strong>{browser}</strong> on <strong>{os}</strong>
+      </p>
+      {mobile && (
         <p>
-          {city}, {regionName}, {country}
-          <br />
-          ISP: {isp}
+          <em>Mobile device detected. Location data may not be accurate.</em>
         </p>
-        <p>
-          Running <strong>{browser}</strong> on <strong>{os}</strong>
-        </p>
-        {mobile && (
-          <p>
-            <em>Mobile device detected. Location data may not be accurate.</em>
-          </p>
-        )}
-      </div>
-    </div>
+      )}
+    </>
   );
 }

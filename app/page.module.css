@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     font-size:large;
+    flex-grow: 1;
 }
 
 .center{
@@ -9,7 +10,14 @@
     width:100%;
 }
 
-.center h1{
-    font-family:'Arial Black',sans-serif
-    
+.error{
+    font-size: xx-large;
+}
+
+.footer{
+    padding: 10px;
+    padding-bottom: 30px;
+    text-align: center;
+    position: sticky;
+    bottom: 0;
 }
