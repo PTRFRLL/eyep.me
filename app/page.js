@@ -8,11 +8,6 @@ async function getData() {
   const userAgent = head.get("user-agent");
   const res = await fetch(`http://ip-api.com/json/${ip}?fields=query,country,regionName,city,isp,mobile,status,proxy`);
 
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error("Failed to fetch data");
-  }
-
   let parser = new UAParser(userAgent);
   let parserResults = parser.getResult();
 
