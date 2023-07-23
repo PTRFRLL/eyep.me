@@ -1,0 +1,15 @@
+.contain{
+    display: flex;
+    justify-content: center;
+    font-size:large;
+}
+
+.center{
+    text-align:center;
+    width:100%;
+}
+
+.center h1{
+    font-family:'Arial Black',sans-serif
+    
+}
