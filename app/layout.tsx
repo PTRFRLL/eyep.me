@@ -1,12 +1,14 @@
+import React from "react";
 import { Inter } from "next/font/google";
 import styles from "./page.module.css";
+import type { Metadata } from "next";
 import "./global.css";
 
-export const metadata = {
+export const metadata: Metadata = {
   metadataBase: new URL("https://eyep.me"),
   title: "IP Me | IP, Location, and User Agent Lookup",
+  authors: [{ name: "PTRFRLL", url: "https://github.com/ptrfrll" }],
   description: "Fast & secure IP, location, and user-agent lookup",
-  author: "@PTRFRLL",
   viewport: {
     width: "device-width",
     initialScale: 1,
@@ -26,12 +28,12 @@ export const metadata = {
     ],
   },
   twitter: {
-    card: "summary_large_image",
     title: "IP Me | IP, Location, and User Agent Lookup",
     description: "Fast & secure IP, location, and user-agent lookup",
     creator: "@ptrfrll",
     images: ["/og.png"],
-    url: "https://eyep.me/",
+    site: "https://eyep.me/",
+    card: "summary_large_image",
   },
 };
 
