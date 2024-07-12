@@ -1,0 +1,21 @@
+<div>
+  <h1>{{query}}</h1>
+  {{#unless lookupFail}}
+    <p>
+      {{location}}
+      <br />
+      {{net}}
+    </p>
+  {{/unless}}
+  <p>
+    Running
+    <strong>{{browser}}</strong>
+    on
+    <strong>{{os}}</strong>
+  </p>
+  {{#if mobile}}
+    <p>
+      <em>Mobile device detected. Location data may not be accurate.</em>
+    </p>
+  {{/if}}
+</div>
