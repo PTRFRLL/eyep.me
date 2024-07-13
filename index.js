@@ -1,8 +1,9 @@
 const express = require("express");
 const path = require("path");
 const exphbs = require("express-handlebars");
-
+const pkg = require("./package.json");
 const routes = require("./routes");
+const logger = require("./lib/logger");
 const app = express();
 const port = 3000;
 
@@ -15,5 +16,5 @@ app.use(express.static("public"));
 app.use("/", routes);
 
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  logger.info(`✅ v${pkg.version} running on port ${port}`);
 });
