@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
     userAgent
   );
   const location = `${city}, ${regionName}, ${country}`;
-  const net = `ISP: ${isp}${proxy ? "(VPN detected)" : ""}`;
+  const net = `ISP: ${isp}${proxy ? " (VPN detected)" : ""}`;
   res.render("index", {
     location,
     browser,
