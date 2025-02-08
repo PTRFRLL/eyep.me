@@ -1,8 +1,7 @@
 const express = require("express");
 const { getIPAndUserAgentData } = require("../lib/api");
-const router = express.Router();
-const pkg = require("../package.json");
 const { getRecordsByDomain } = require("../lib/dns");
+const router = express.Router();
 
 router.get("/", async (req, res) => {
   const userAgent = req.get("user-agent");
@@ -11,16 +10,15 @@ router.get("/", async (req, res) => {
     ip,
     userAgent
   );
-  const location = `${city}, ${regionName}, ${country}`;
-  const net = `ISP: ${isp}${proxy ? " (VPN detected)" : ""}`;
-  res.render("index", {
+  const location = lookupFail ? "Unidentifed" : `${city}, ${regionName}, ${country}`;
+  res.json({
+    ip,
     location,
     browser,
     os,
-    net,
+    proxy,
+    isp,
     mobile,
-    query,
-    lookupFail,
   });
 });
 
@@ -28,14 +26,10 @@ router.get("/dns/:domain", async (req, res) => {
   const domain = req.params.domain;
   try {
     const records = await getRecordsByDomain(domain);
-    res.render("dns", { domain, records });
+    res.json({ domain, records });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
-});
-
-router.get("/status", (req, res) => {
-  res.json({ status: "success", version: pkg.version });
 });
 
 module.exports = router;

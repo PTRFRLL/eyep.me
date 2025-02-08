@@ -1,20 +1,23 @@
-# Fetching the minified node image on apline linux
-FROM node:slim
+# Use Alpine Linux as base image
+FROM node:18-alpine
 
-# Declaring env
-ENV NODE_ENV development
+# Install dig (bind-tools package in Alpine)
+RUN apk add --no-cache bind-tools
 
-# Setting up the work directory
-WORKDIR /express-docker
+# Create app directory
+WORKDIR /usr/src/app
 
-# Copying all the files in our project
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy app source
 COPY . .
 
-# Installing dependencies
-RUN npm ci
-
-# Starting our application
-CMD [ "node", "index.js" ]
-
-# Exposing server port
+# Expose port
 EXPOSE 3000
+
+# Start the app
+CMD ["node", "index.js"]

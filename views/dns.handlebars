@@ -1,0 +1,64 @@
+{{#if error}}
+  <div class="error">{{error}}</div>
+{{/if}}
+
+<h2>{{domain}} DNS Records</h2>
+{{#if records}}
+  <div class="records">
+    <p>Queried A, AAAA, MX, TXT, NS, and CNAME</p>
+
+    {{#if records.a.length}}
+      <h3>A Records</h3>
+      <ul>
+        {{#each records.a}}
+          <li>{{this}}</li>
+        {{/each}}
+      </ul>
+    {{/if}}
+
+    {{#if records.aaaa.length}}
+      <h3>AAAA Records</h3>
+      <ul>
+        {{#each records.aaaa}}
+          <li>{{this}}</li>
+        {{/each}}
+      </ul>
+    {{/if}}
+
+    {{#if records.mx.length}}
+      <h3>MX Records</h3>
+      <ul>
+        {{#each records.mx}}
+          <li>Priority: {{this.priority}}, Exchange: {{this.exchange}}</li>
+        {{/each}}
+      </ul>
+    {{/if}}
+
+    {{#if records.txt.length}}
+      <h3>TXT Records</h3>
+      <ul>
+        {{#each records.txt}}
+          <li>{{this}}</li>
+        {{/each}}
+      </ul>
+    {{/if}}
+
+    {{#if records.ns.length}}
+      <h3>NS Records</h3>
+      <ul>
+        {{#each records.ns}}
+          <li>{{this}}</li>
+        {{/each}}
+      </ul>
+    {{/if}}
+
+    {{#if records.cname.length}}
+      <h3>CNAME Records</h3>
+      <ul>
+        {{#each records.cname}}
+          <li>{{this}}</li>
+        {{/each}}
+      </ul>
+    {{/if}}
+  </div>
+{{/if}}
