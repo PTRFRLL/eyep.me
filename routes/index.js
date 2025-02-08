@@ -30,7 +30,7 @@ router.get("/dns/:domain", async (req, res) => {
     const records = await getRecordsByDomain(domain);
     res.render("dns", { domain, records });
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.render("dns", { error: error.message });
   }
 });
 

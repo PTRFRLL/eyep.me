@@ -1,8 +1,9 @@
 {{#if error}}
   <div class="error">{{error}}</div>
+{{else}}
+  <h2>{{domain}}</h2>
 {{/if}}
 
-<h2>{{domain}} DNS Records</h2>
 {{#if records}}
   <div class="records">
     <p>Queried A, AAAA, MX, TXT, NS, and CNAME</p>
