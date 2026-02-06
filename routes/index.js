@@ -6,7 +6,7 @@ const { getRecordsByDomain } = require("../lib/dns");
 
 router.get("/", async (req, res) => {
   const userAgent = req.get("user-agent");
-  const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
+  const ip = req.headers["cf-connecting-ip"] || req.headers["x-forwarded-for"] || req.socket.remoteAddress;
   const { query, isp, proxy, browser, os, mobile, city, regionName, country, lookupFail } = await getIPAndUserAgentData(
     ip,
     userAgent
