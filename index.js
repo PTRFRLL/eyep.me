@@ -20,7 +20,7 @@ app.use("/", routes);
 app.use("/api", apiRoutes);
 
 app.use((req, res) => {
-  res.redirect("/");
+  res.sendStatus(404);
 });
 
 app.listen(port, () => {
